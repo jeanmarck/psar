@@ -1,0 +1,10 @@
+Possibilité d'executer du code python à partir de php
+
+commandes: la fonction exec() permet d'executer un script fournit en paramètre à tester après
+les librairies javascript manipulant de la 3D:
+
+
+Librairies python pour du 3D: PyOpenGl, Tkinter(supporte mal la 3D),Vpython,
+
+Il existe aussi python et GTK+ pour l'interface graphique 
+
