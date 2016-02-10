@@ -1,0 +1,364 @@
+\clearpage
+\section{Introduction}  
+  Le projet  \textbf{ "Interface graphique pour la Logique en L3"}consiste à développer un outil dynamique et robuste pour améliorer l'enseignement  de la logique en Licence 3. Ce projet nous a été soumis dans le cadre de L'UE PSAR du master 1 Informatique spécialité SAR.
+Il est sous la responsabilité de Mr Fabrice Kordon suivit par Mme Béatrice Berard,Mr Mathieu Jaume et Mme Bénédicte Legastelois. 
+
+\section{Spécification Technique des Besoins et Exigences}
+\subsection{Besoins et Exigences du client}
+\subsubsection{Interpretation d'une formule de la logique des prédicats}
+\noindent \textbf{Terme}
+\\
+Un terme est défini de façon inductive comme suit :
+\begin{itemize}
+\item Toute variable est un terme
+\item Toute constantes est un terme
+\end{itemize}
+Nous manipulerons en tout cinq (5) variables \{v,w,x,y,z\}  et 20 constantes \{a,b,c,...,t\} dans notre projet.\\
+
+
+\noindent \textbf{Interprétation des termes :}
+\\
+Interpréter un terme, c'est lui associer une valeur appartenant à un domaine. 
+\begin{itemize}
+\item Si le terme est une variable, c'est la valeur associée à  la variable
+\item Sinon c'est la valeur globale résultant de l?évaluation des différents arguments du terme\\
+\end{itemize}
+
+
+\noindent \textbf{Interprétation des termes du projet :}
+\\
+Dans ce projet les domaines d'interprétation seront des jardins  contenant des fleurs.
+
+Les objets manipuler seront des fleurs dont les caractéristiques sont les suivantes :
+\begin{itemize}
+\item espèce = {rose, paquerette, tulipe}
+\item taille = {grand, moyen, petit}
+\item couleur = {rouge, rose ,blanche}
+\item nom{une constante ou none s'il est anonyme}
+\end{itemize}
+	
+	
+une fleur dans le jardin est représentée par un quintuplets \{(x,y),e,t,c,n\} où :
+
+\begin{itemize}
+\item (x,y) est sa position dans le jardin 
+\item e: son espèce
+\item t: sa taille
+\item c: sa couleur
+\item n: son nom ou none si elle est anonyme
+\end{itemize}
+
+\newpage
+
+\begin{center}
+\textbf{Construction du jardin}
+\end{center} 
+
+les coordonnées (x, y) sont des places du jardin 
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.375]
+\node (n0)    at (-9.5,0)      {Ouest};
+\node (n0)    at (9,0)      {Est};
+\node (n0)    at (0,-9)      {Sud};
+\node (n0)    at (0,9)      {Nord};
+
+\node (n0)    at (0,1)      {$\bullet$};
+\node (n0)    at (0,3)      {$\bullet$};
+\node (n0)    at (0,5)      {$\bullet$};
+\node (n0)    at (0,7)      {$\bullet$};
+\node (n0)    at (0,-1)      {$\bullet$};
+\node (n0)    at (0,-3)      {$\bullet$};
+\node (n0)    at (0,-5)      {$\bullet$};
+\node (n0)    at (0,-7)      {$\bullet$};
+
+\node (n0)    at (1,0)      {$\bullet$};
+\node (n0)    at (3,0)      {$\bullet$};
+\node (n0)    at (5,0)      {$\bullet$};
+\node (n0)    at (7,0)      {$\bullet$};
+\node (n0)    at (-1,0)      {$\bullet$};
+\node (n0)    at (-3,0)      {$\bullet$};
+\node (n0)    at (-5,0)      {$\bullet$};
+\node (n0)    at (-7,0)      {$\bullet$};
+
+\node (n0)    at (1,2)      {$\bullet$};
+\node (n0)    at (1,4)      {$\bullet$};
+\node (n0)    at (1,6)      {$\bullet$};
+\node (n0)    at (1,-2)      {$\bullet$};
+\node (n0)    at (1,-4)      {$\bullet$};
+\node (n0)    at (1,-6)      {$\bullet$};
+\node (n0)    at (-1,2)      {$\bullet$};
+\node (n0)    at (-1,4)      {$\bullet$};
+\node (n0)    at (-1,6)      {$\bullet$};
+\node (n0)    at (-1,-2)      {$\bullet$};
+\node (n0)    at (-1,-4)      {$\bullet$};
+\node (n0)    at (-1,-6)      {$\bullet$};
+
+\node (n0)    at (2,1)      {$\bullet$};
+\node (n0)    at (2,3)      {$\bullet$};
+\node (n0)    at (2,5)      {$\bullet$};
+\node (n0)    at (2,-1)      {$\bullet$};
+\node (n0)    at (2,-3)      {$\bullet$};
+\node (n0)    at (2,-5)      {$\bullet$};
+\node (n0)    at (-2,1)      {$\bullet$};
+\node (n0)    at (-2,3)      {$\bullet$};
+\node (n0)    at (-2,5)      {$\bullet$};
+\node (n0)    at (-2,-1)      {$\bullet$};
+\node (n0)    at (-2,-3)      {$\bullet$};
+\node (n0)    at (-2,-5)      {$\bullet$};
+
+\node (n0)    at (3,0)      {$\bullet$};
+\node (n0)    at (3,2)      {$\bullet$};
+\node (n0)    at (3,4)      {$\bullet$};
+\node (n0)    at (3,-2)      {$\bullet$};
+\node (n0)    at (3,-4)      {$\bullet$};
+\node (n0)    at (-3,0)      {$\bullet$};
+\node (n0)    at (-3,2)      {$\bullet$};
+\node (n0)    at (-3,4)      {$\bullet$};
+\node (n0)    at (-3,-2)      {$\bullet$};
+\node (n0)    at (-3,-4)      {$\bullet$};
+
+\node (n0)    at (4,1)      {$\bullet$};
+\node (n0)    at (4,3)      {$\bullet$};
+\node (n0)    at (4,-1)      {$\bullet$};
+\node (n0)    at (4,-3)      {$\bullet$};
+\node (n0)    at (-4,1)      {$\bullet$};
+\node (n0)    at (-4,3)      {$\bullet$};
+\node (n0)    at (-4,-1)      {$\bullet$};
+\node (n0)    at (-4,-3)      {$\bullet$};
+
+\node (n0)    at (5,0)      {$\bullet$};
+\node (n0)    at (5,2)      {$\bullet$};
+\node (n0)    at (5,-2)      {$\bullet$};
+\node (n0)    at (-5,0)      {$\bullet$};
+\node (n0)    at (-5,2)      {$\bullet$};
+\node (n0)    at (-5,-2)      {$\bullet$};
+
+\node (n0)    at (6,1)      {$\bullet$};
+\node (n0)    at (-6,1)      {$\bullet$};
+\node (n0)    at (6,-1)      {$\bullet$};
+\node (n0)    at (-6,-1)      {$\bullet$};
+
+%\draw[dotted] (-8,8) --  (-8,-8);
+\draw[dotted] (-7,8) --  (-7,-8);
+\draw[dotted] (-6,8) --  (-6,-8);
+\draw[dotted] (-5,8) --  (-5,-8);
+\draw[dotted] (-4,8) --  (-4,-8);
+\draw[dotted] (-3,8) --  (-3,-8);
+\draw[dotted] (-2,8) --  (-2,-8);
+\draw[dotted] (-1,8) --  (-1,-8);
+\draw[->] (0,-8) --  (0,8);
+\draw[dotted] (1,8) --  (1,-8);
+\draw[dotted] (2,8) --  (2,-8);
+\draw[dotted] (3,8) --  (3,-8);
+\draw[dotted] (4,8) --  (4,-8);
+\draw[dotted] (5,8) --  (5,-8);
+\draw[dotted] (6,8) --  (6,-8);
+\draw[dotted] (7,8) --  (7,-8);
+%\draw[dotted] (8,8) --  (8,-8);
+
+%\draw[dotted] (-8,8) --  (8,8);
+\draw[dotted] (-8,7) --  (8,7);
+\draw[dotted] (-8,6) --  (8,6);
+\draw[dotted] (-8,5) --  (8,5);
+\draw[dotted] (-8,4) --  (8,4);
+\draw[dotted] (-8,3) --  (8,3);
+\draw[dotted] (-8,2) --  (8,2);
+\draw[dotted] (-8,1) --  (8,1);
+\draw[->] (-8,0) --  (8,0);
+\draw[dotted] (-8,-1) --  (8,-1);
+\draw[dotted] (-8,-2) --  (8,-2);
+\draw[dotted] (-8,-3) --  (8,-3);
+\draw[dotted] (-8,-4) --  (8,-4);
+\draw[dotted] (-8,-5) --  (8,-5);
+\draw[dotted] (-8,-6) --  (8,-6);
+\draw[dotted] (-8,-7) --  (8,-7);
+%\draw[dotted] (-8,-8) --  (8,-8);
+
+\draw[densely dashed] (0,0) -- (7,7);
+\draw[densely dashed] (0,0) -- (-7,-7);
+\draw[densely dashed] (0,0) -- (7,-7);
+\draw[densely dashed] (0,0) -- (-7,7);
+\end{tikzpicture}
+\end{center}
+\caption{Places d'un jardin}\label{lagrille}
+\end{figure}
+
+\[
+\mathrm{Places}  = \left \{
+\begin{array}{c}
+(0,7) ,
+\\
+(-1,6), (1,6) ,
+\\
+(-2,5) , (0,5) , (2,5),
+\\
+(-3,4) , (-1,4) , (1,4) , (3,4),
+\\
+(-4,3), (-2,3), (0,3) , (2,3), (4,3),
+\\
+(-5,2),(-3,2) , (-1,2) , (1,2) , (3,2), (5,2),
+\\
+(-6,1),(-4,1), (-2,1), (0,1) , (2,1) , (4,1),(6,1),
+\\
+(-7,0) , (-5,0) , (-3,0) , (-1,0) , (1,0) , (3,0) , (5,0) , (7,0) ,
+\\
+(-6,-1),(-4,-1), (-2,-1), (0,-1) , (2,-1), (4,-1),(6,-1),
+\\
+(-5,-2),(-3,-2), (-1,-2), (1,-2) , (3,-2),(5,-2),
+\\
+(-4,-3), (-2,-3) , (0,-3) , (2,-3), (4,-3),
+\\
+(-3,-4), (-1,-4), (1,-4) , (3,-4) ,
+\\
+(-2,-5) , (0,-5) , (2,-5),
+\\
+(-1,-6),  (1,-6),
+\\
+(0,-7)
+\\
+\end{array}
+\right \}
+\]
+
+\newpage	
+
+\noindent \textbf{Formule de la logique des prédicats: }
+
+Un Symbole de prédicat correspond au nom d'une propriété portant sur un ou plusieurs termes.
+
+\emph{Exemple de prédicat:}\\
+\begin{itemize}
+\item[( f1 )] d est une rose :\\
+ $\qquad Rose(d)$;
+\item[( f2 )] Toutes les fleurs sont des roses :\\
+ $ \qquad \forall x ~ Rose(x)$;
+\item[( f3 )] Il existe une rose :\\
+ $ \qquad \exists x ~ Rose(x)$; 
+\item[( f4 )] Toute fleur blanche est plus petite qu'une fleur située à son est :\\
+$ \qquad \forall x ~ (est\_blanc(x) \implies  \exists y   ~ (plus\_petit\_que(x, y) \wedge a\_l\_est\_de(y, x)))$;
+\item[( f5 )] Toute fleur est à l'est ou à l'ouest, ou au sud, ou au nord :\\
+$ \qquad \forall x (a\_l\_est(x) \vee a\_l\_ouest(x)\vee au\_sud(x) \vee au\_nord(x))$;
+
+\item[( f6 )] Toutes les grandes fleurs sont rouges et il n'existe pas de fleur blanche au sud d'une fleur rouge :\\
+$ \qquad \forall x  ~ (est\_grand(x) \implies est\_rouge(x)) \wedge \not\exists x (est\_blanc(x) \wedge \exists y ~ (est\_rouge(y) \wedge au\_sud\_de(x, y)))$;
+
+\item[( f7 )] Il existe une fleur rouge au nord de la fleur g :\\
+$ \qquad \exists x ~ (est\_rouge(x) \wedge au\_nord\_de(x, g))$  \\
+\end{itemize}
+
+
+\noindent \textbf{Implémentation des formules}\\
+Une variable est libre si elle n'est associée à aucun quantificateur (existentiel ,pour tout). Dans le cas du projet, les formules ne devront pas contenir des variables libres.
+\\
+\noindent \textbf{Formules du projet}\\
+Il existe des prédicats unaire, binaires et ternaires :
+
+\begin{itemize}
+\item P1-prédicats unaire
+\item P2- prédicats binaires
+\item P3- prédicats ternaire
+\end{itemize}
+\\
+P1 = \{est\_rouge, est\_rose, est\_blanc, a\_l\_est, a\_l\_ouest, au\_sud, au\_nord , Rose, Paquerette, Tulipe, est_grand, est_moyen, est_petit \}\\
+P2 = \{a\_l\_est\_de, a\_l\_ouest\_de, au\_sud\_de, au\_nord\_de, même\_latitude, même\_longitude ,plus\_grand\_que,\\ plus\_petit\_que, même\_taille\_que, même\_couleur\_que\}\\
+P3 = \{est\_entre \}
+
+\begin{center}
+\begin{tabular}{|l|c|r|}
+\hline Prédicat & Définition & Relation \tabularnewline
+\hline Espèce & Rose, paquerette,Tulipe & Unaire\tabularnewline
+\hline Taille & est\_grand,est\_moyen,est\_petit & Unaire \tabularnewline
+\hline Couleur & est\_rouge,est\_rose,est\_blanc & Unaire\tabularnewline
+\hline Position & a\_l\_est,a\_l\_ouest,au\_sud,au\_nord & Unaire \tabularnewline
+\hline
+Comparaison de position & a\_lest\_de,a\_l\_ouest\_de,au\_sud\_de & Binaire \tabularnewline
+\hline & au\_nord\_de ,même\_latitude, même\_longitude &  \tabularnewline
+\hline Comparaison de taille & Plus\_petit\_que,plus\_grand\_que,même\_taille\_que & Binaire\tabularnewline
+\hline Comparaison de couleur & même\_couleur\_que & Binaire \tabularnewline
+\hline Égalité & = & Binaire \tabularnewline
+\hline Comparaison de position & est\_entre & Ternaire \tabularnewline
+\hline
+\end{tabular}
+\end{center}
+
+
+Toutes  les formules soumises à la vérification doivent ne sont pas censées contenir des variables libres (une erreur est donc déclenchée lors de l' évaluation d'une formule avec une variable libre).
+
+\newpage
+
+\section{Solutions}
+\subsection{Architecture logicielle}
+Le projet est structuré en modules indépendants : \\
+
+\noindent \textbf{1-Module d'analyseur syntaxique des formules }\\
+L'analyseur syntaxique sera un module du projet qui s'occupera de la vérification syntaxique des différentes formules qui seront soumises à une évaluation éventuelle.\\
+Une fois que  l?utilisateur (l'étudiant) saisit sa formule et demande une interprétation, nous l'appellerons en premier pour s'assurer que la formule est bien formée avant d'appeler notre interpréteur.
+\\L'analyseur syntaxique sera un module du projet qui s'occupera de la vérification syntaxique des différentes formules qui seront soumises à une évaluation éventuelle.\\
+Une fois que  l'utilisateur (l'étudiant) saisit sa formule et demande une interprétation, nous l'appellerons en premier pour s'assurer que la formule est bien formée avant d'appeler notre interpréteur.\\
+
+\noindent \textbf{2-Module Interface graphique}\\
+Toute l'application sera présentée dans une interface conviviale, dans laquelle l'utilisateur aura la possibilité de construire ses propres formules, son propre environnement et demander l'évaluation de ses formules.\\
+Il est évident que l'interface offrira un menu standard dans lequel il pourra sauvegarder/restaurer son environnement, ses formules dans/depuis le répertoire de son choix.\\
+Notre choix du langage tient compte en premier lieu du temps de réponse et de la robustesse.\\
+
+
+
+\noindent \textbf{3-Module évaluant les formules(Moteur)}\\
+Nous disposons d'un module d'interprétation développé en python, il faudra faire  communiquer les deux modules pour obtenir l'interprétation de(s) la formule(s).\\
+Le module python attend deux paramètres :\\
+
+\begin{itemize}
+\item l'environnement bien défini
+\item la formule bien formée 
+\end{itemize}
+
+\subsection{Choix technologique}
+
+Comme le moteur  est développé en  python, nous partons de l?idée de faire communiquer deux langages car, implémenter une interface graphique en python s?avère fastidieux.\\
+
+\begin{center}
+Resultats de nos recherches \\
+\end{center} 
+
+Notre application sera	 implémentée en java, il faut trouver le middleware nécessaire pour la communication des deux langages.\\
+Le choix du middleware dépend fortement :\\
+\begin{itemize}
+\item du temps de réponse
+\item de la prise en main\\
+\end{itemize}
+
+\emph{Faire Communiquer java et python}\\
+
+La Bibliothèque \textbf{Jython} permet d?exécuter en Java un programme écrit en python, Il existe aussi jeep qui fait de même.\\
+\emph{Désavantage}: Il y a en effet une latence élevée de l?interpréteur Jython.\\
+\textbf{CORBA, ICE} et ses variantes sont de langage de définitions d?interfaces (IDL)  visant à faire communiquer deux entités (services, composants) écrit dans des langages différents; Il s?agit de mapper (traduire des éléments fournis par l?IDL en éléments d?un langage de programmation).\\
+Nous utiliserons cette deuxième approche dans le cadre de ce projet.
+
+\subsection{Délais et taches à réaliser}
+L'ue PSAR est organisé comme suit :
+\begin{itemize}
+\item Rédaction d'un cahier de charge
+\item Réalisation du projet
+\item Rédaction d'un rapport
+\item Soutenance du projet
+\end{itemize}
+
+Comme tout projet cela est géré dans un temps bien définis.
+\begin{itemize}
+\item 01 Mars 2016: Cahier de charges
+\item Rapport
+\item Soutenance du projet
+\end{itemize}
+
+
+\subsection{Organisation et gestion du projet}
+
+Nous avons décidé pour chaque module de discuter et partager nos idées, avant de nous répartir le travail. Ensuite, après que chacun de nous ai fini, de travailler sur un composant de l?application, ou sur une classe, nous  passerons à la mise en commun et à la réalisation des différents tests à différent niveau d?abstraction.\\
+
+\noindent \textbf{Gestion du projet}\\
+ Dans le cadre du projet, afin de nous assurer de gérer au mieux les incohérences et les bugs, nous utiliserons l?outil Git.
+\\
+\noindent \textbf{Gestion des documents dans le projet} \\
+Tous les documents que nous produirons dans le cadre du projet (cahier de charges, rapport d'avancement,Rapport final) serons édités en latex.

@@ -1,0 +1,1189 @@
+\clearpage
+\section{Fonctions booléennes}
+\subsection{Algèbre de Boole}
+\begin{definition}[Algèbre de Boole]
+  Une algèbre de Boole est un tuple
+  
+  Le projet  \textbf{ "Interface graphique pour la Logique en L3"}consiste à développer un outil dynamique et robuste pour améliorer l'enseignement  de la logique en Licence 3. Ce projet nous a été soumis dans le cadre de L'UE PSAR du master 1 Informatique spécialité SAR.
+Il est sous la responsabilité de Mr Fabrice Kordon suivit par Mme Béatrice Berard,Mr Mathieu Jaume et Mme Bénédicte Legastelois.
+  $\mathcal{B}=(E,\,\bot,\,\top,\,\vee,\,\wedge,\,\bar{\,})$ où $E$
+  est un ensemble, $\bot$ et $\top$ sont deux éléments distincts de
+  $E$, $\vee$ et $\wedge$ sont deux opérations binaires, $\bar{\,}$
+  est une opération unaire, satisfaisant les propriétés suivantes :
+\begin{itemize}
+\item \emph{Associativité} : pour tous $ a,\, b,\, c\in E$, 
+$(a\vee b)\vee c=a\vee(b\vee c)$ et $(a\wedge b)\wedge c=a\wedge(b\wedge c)$
+\item \emph{Commutativité} : pour tous $a,\, b\in E$, 
+$a\vee b=b\vee a$ et $a\wedge b=b\wedge a$
+\item \emph{Distributivité} d'une loi par rapport à l'autre: 
+pour tous $a,\, b,\, c\in E$, \\
+  $(a\vee b)\wedge c=(a\wedge c)\vee(b\wedge c)$ et $(a\wedge b)\vee
+  c=(a\vee c)\wedge(b\vee c)$
+\item \emph{Absorption} : pour tous $a,\, b\in E$, 
+$a\wedge(a\vee b)=a$ et $a\vee(a\wedge b)=a$
+\item \emph{Idempotence} : pour tout $a\in E$, 
+$a\vee a=a$ et $a\wedge a=a$
+\item \emph{Bornes} : pour tout $a\in E$, 
+$a\wedge\bot=\bot,\ \  a\vee\bot=a$ et $a\wedge\top=a,\ \  a\vee\top=\top$
+\item \emph{Complémentarité} : pour tout $a\in E$, 
+ $a\wedge\bar{a}=\bot$ et $a\vee\bar{a}=\top$
+\end{itemize}
+\end{definition}
+\medskip{}
+
+\noindent \textbf{Exemples.}
+\begin{enumerate}
+\item Soit $E=\mathcal{P}(A)$ pour un ensemble $A$ non vide.
+On définit alors une algèbre de Boole avec : \\
+
+\begin{tabular}{ccccc}
+\hline 
+$\bot$ & $\top$ & $\vee$ & $\wedge$ & $\bar{\,}$\tabularnewline
+\hline 
+$\textrm{Ø}$ & A & $\cup$ & $\cap$ & complémentaire\tabularnewline
+\hline
+\end{tabular}
+
+\bigskip{}
+
+
+\item Soit $\Bo=\{ 0,\,1 \} $. On définit alors une algèbre
+de Boole avec : \\
+
+{}\begin{tabular}{ccccc}
+\hline 
+$\bot$ & $\top$ & %
+$\vee$
+ & %
+$\wedge$
+ & %
+$\bar{\,}$
+\tabularnewline
+\hline 
+0 (faux) & 1 (vrai) & ou (disjonction) & et (conjonction) & 
+négation\tabularnewline
+\hline
+\end{tabular}
+
+\medskip \noindent Pour les calculs dans $\Bo$, on note généralement
+$+$ pour $\vee$ et $.$ ou rien pour $\wedge$.
+\end{enumerate}
+
+\subsection{Fonctions booléennes}
+\begin{definition}[Fonction booléenne]
+Soit $n\in\N$. Une fonction booléenne à $n$ arguments
+est une application $f\colon\Bo^{n}\longrightarrow \Bo$.
+\end{definition}
+\noindent \textbf{Remarque.}
+Si $n=0$, il y a deux fonctions constantes : $0,\,1$.\\
+Si $n=1$, il y a quatre fonctions : $x \rightarrow 0,\, x \rightarrow 1,\,
+x \rightarrow x$ et $x \rightarrow\bar{x}$.\\
+Il y a $2^{2^{n}}$ fonctions booléennes à $n$ arguments.
+
+%\vspace{1in}
+\noindent \textbf{Exemple.}
+Table de vérité de la fonction $NAND$ (à deux arguments), définie 
+par :\\ $NAND(x,y) = \overline{x.y}$.\\
+
+% \begin{multicols}{2}
+
+%   \begin{pspicture}(0,-0.551632)(3.74,0.548368)
+%     \usefont{T1}{ptm}{m}{n} \rput(0.28,0.273368){$x$}
+%     \psline[linewidth=0.04cm](0.44,0.26336798)(1.0410175,0.26336798)
+%     \psline[linewidth=0.04cm](0.44,-0.27988198)(1.0410175,-0.27988198)
+%     \psline[linewidth=0.04cm](2.278605,-0.0016320016)(2.8796225,-0.0016320016)
+%     \psline[linewidth=0.04cm](1.0289972,0.515118)(1.0410175,-0.531632)
+%     \rput{-88.68047}(1.4399921,1.475771){\psarc[linewidth=0.04]
+%     (1.4750738,0.0011139058){0.51871073}{-1.3322198}{178.06238}}
+%     \psline[linewidth=0.04cm](1.5098113,-0.518382)(1.0530379,-0.518382)
+%     \psline[linewidth=0.04cm](1.5098113,0.528368)(1.0169768,0.528368)
+%     \usefont{T1}{ptm}{m}{n} \rput(0.27,-0.24663201){$y$}
+%     \usefont{T1}{ptm}{m}{n} \rput(3.3,0.013367998){$\overline{x.y}$}
+%     \pscircle[linewidth=0.04,dimen=outer](2.15,-0.0016320094){0.15} 
+%\end{pspicture}
+
+\begin{tabular}{|c|c|c|}
+\hline 
+$x$ & $y$ & $NAND(x,\, y)$\tabularnewline
+\hline
+\hline 
+0 & 0 & 1\tabularnewline
+\hline 
+0 & 1 & 1\tabularnewline
+\hline 
+1 & 0 & 1\tabularnewline
+\hline 
+1 & 1 & 0\tabularnewline
+\hline
+\end{tabular}
+
+%\end{multicols}
+
+\begin{theorem}\label{th:poly}
+  Toute fonction booléenne $f$ à $n$ arguments, $(n\geqslant1)$,
+  s'écrit comme combinaison de ses arguments ou de leurs
+  complémentaires avec somme et produit.
+\end{theorem}
+
+\noindent \textbf{Exemple.}
+$NAND(x,\, y)=\bar{x}\cdot\bar{y}+\bar{x}\cdot y+x\cdot\bar{y}$
+
+
+\medskip \noindent Ce théorème se démontre par récurrence
+sur $n$, en utilisant le lemme suivant~:
+\begin{lemma}
+Soit $f$ une fonction booléenne à $n$ arguments.\\
+Alors $f(x_{1},\,\dots,\, x_{n})=x_{1}f(1,\, x_{2},\,\dots,\, x_{n})+\overline{x_{1}}f(0,\, x_{2},\,\dots,\, x_{n})$
+\end{lemma}
+\begin{proof}
+  Posons $g(x_{1},\,\dots,\, x_{n})=x_{1}f(1,\, x_{2},\,\dots,\,
+  x_{n})+\overline{x_{1}}f(0,\, x_{2},\,\dots,\, x_{n})$ et montrons
+  que $f=g$, c'est-à-dire que pour tout $n$-uplet $(x_{1},\,\dots,\,
+  x_{n})$, $g(x_{1},\,\dots,\, x_{n})=f(x_{1},\,\dots,\, x_{n})$.
+\begin{itemize}
+\item Si $x_{1}=1,\; g(x_{1},\,\dots,\, x_{n})=f(1,\, x_{2},\,\dots,\,
+  x_{n})=f(x_{1},\,\dots,\, x_{n})$
+\item Si $x_{1}=0,\, g(x_{1},\,\dots,\, x_{n})=f(0,\, x_{2},\,\dots,\,
+  x_{n})=f(x_{1},\,\dots,\, x_{n})$
+\end{itemize}
+Donc $f=g$.
+\end{proof}
+
+\subsection{Formes normales}
+Pour une fonction booléenne $f$ à $n$ arguments, on note $b=
+(b_{1},\,\dots,\, b_{n})$ un élément de $\Bo^{n}$ et
+$\mathcal{D}_{f}=\{ b \in \Bo^{n}/f(b)=1\} $.
+
+\begin{definition}[Formes disjonctives et conjonctives]~\\
+\vspace{-0.4cm}
+\begin{itemize}
+\item Une fonction est sous forme normale disjonctive (FND) si elle s'écrit
+  comme une somme de produits de $x_{i}$ ou $\overline{x_{i}}$.
+\item Une fonction est sous forme normale conjonctive (FNC) si elle s'écrit
+  comme produit de sommes de $x_{i}$ ou $\overline{x_{i}}$.
+\end{itemize}
+\end{definition}
+
+Pour une fonction booléenne $f$ à $n$ arguments, une forme normale
+disjonctive pour $f$ est obtenue par :
+\[ f(x_{1},\,\dots,\,
+x_{n})=\sum_{b\in\mathcal{D}_{f}}M_b(x_{1},\,\dots,\, x_{n})\mbox{ où
+} 
+\begin{array}[t]{l}
+  M_{b}(x_{1},\,\dots,\, x_{n})=x_{1}'\cdot\cdots\cdot x_{n}'\\
+  \mbox{avec } x_{i}'=\begin{cases}
+    x_{i} & \mbox{si }b_{i}=1\\
+    \overline{x_{i}} & \mbox{si }b_{i}=0\end{cases}\end{array}\]
+
+
+\noindent \textbf{Exemple.}  Pour la fonction $NAND$, on a :
+$NAND(x,\, y)=\underbrace{\bar{x}\cdot\bar{y}}_{M_{(0,\,0)}(x,\,
+  y)}+\underbrace{\bar{x}\cdot y}_{M_{(0,\,1)}(x,\,
+  y)}+\underbrace{x\cdot\bar{y}}_{M_{(1,\,0)}(x,\, y)}$
+
+
+Soit $f$ une fonction booléenne à $n$ arguments, une forme normale
+conjonctive pour $f$ est obtenue par : 
+\[ f(x_{1},\,\dots,\,
+x_{n})=\prod_{b\not \in \mathcal{D}_{f}}S_{b}(x_{1},\,\dots,\, x_{n})\mbox{
+  où }\begin{array}[t]{l}
+  S_{b}(x_{1},\,\dots,\, x_{n})=x_{1}'+\cdots+x_{n}'\\
+  \mbox{avec } x_{i}'=\begin{cases}
+    x_{i} & \mbox{si }b_{i}=0\\
+    \overline{x_{i}} & \mbox{si }b_{i}=1\end{cases}
+\end{array}\]
+
+\noindent \textbf{Exemple.}  Pour la fonction $NAND$, on a :
+$NAND(x,\, y)=\underbrace{\bar{x}+\bar{y}}_{S_{(1,\,1)}(x,\, y)}$
+
+
+%\clearpage
+\section{Calcul propositionnel}
+\subsection{Syntaxe}
+\begin{definition}
+  Soit $\mathcal{P}$ un ensemble de symboles propositionnels (ou
+  variables propositionnelles). Les formules du calcul propositionnel
+  sont définies inductivement par :
+\begin{itemize}
+\item[(B)] Si $p\in\mathcal{P}$, alors $p$ est une formule.
+\item[(I)] Si $F$ est une formule, alors $\neg F$ est une formule,\\
+  si $F_{1}$ et $F_{2}$ sont deux formules, alors $(F_{1}\vee F_{2})$
+  et $(F_{1}\wedge F_{2})$ sont aussi des formules.
+\end{itemize}
+\end{definition}
+\noindent \textbf{Exemple 1.}  $F=((q \wedge r) \vee \neg p))$ est une formule
+utilisant les symboles $p$, $q$ et $r$.
+
+\begin{definition}
+  On définit deux nouvelles opérations $\to$ et $\opeq$ par~:
+\begin{itemize}
+\item $F_{1}\to F_{2}= F_{2}\vee \neg F_{1}$
+\item $F_{1}\opeq F_{2}=(F_{1}\to F_{2})\wedge(F_{2}\to F_{1})$
+\end{itemize}
+\end{definition}
+
+\noindent \textbf{Exemple 2.}  $G=(p\to(p\to q))$ est une formule
+utilisant les deux symboles $p$ et $q$.
+
+\medskip \noindent \textbf{Remarque 1.}  Le symbole $\supset$ est
+parfois utilisé au lieu de $\to$ pour l'implication et parfois aussi
+$\equiv$ au lieu de $\opeq$.
+
+\noindent \textbf{Remarque 2.} Les formules du calcul propositionnel
+peuvent être vues comme les termes construits avec $F_0= \Pa$,
+$F_1=\{\neg\}$ et $F_2 = \{\vee, \wedge, \to, \opeq \}$, avec une
+notation infixe pour les opérateurs binaires, c'est-à-dire par exemple
+$p \vee q$ au lieu de $\vee(p,q)$.
+
+\noindent \textbf{Exemple 3.}  $F=\neg p\wedge((q\vee r)\to s)$ est une
+formule sur le sous-ensemble $\{ p,\, q,\, r,\, s\}$ de  $\mathcal{P}$, qui 
+peut être représentée (comme un terme) par un arbre.
+
+%\noindent 
+% \begin{center}
+%   \begin{pspicture}(0,-2.32)(3.38,2.32)
+%     \definecolor{color58}{rgb}{0.6,0.0,0.6} \usefont{T1}{ptm}{m}{n}
+%     \rput(1.5,2.125){$\wedge$} \usefont{T1}{ptm}{m}{n}
+%     \rput(0.49,0.725){$\neg$} \usefont{T1}{ptm}{m}{n}
+%     \rput(0.49,-0.675){$p$} \usefont{T1}{ptm}{m}{n}
+%     \rput(1.9,-0.695){$\vee$} \usefont{T1}{ptm}{m}{n}
+%     \rput(2.49,0.705){$\to$} \usefont{T1}{ptm}{m}{n}
+%     \rput(1.29,-2.095){$q$} \usefont{T1}{ptm}{m}{n}
+%     \rput(3.1,-0.695){$s$} \usefont{T1}{ptm}{m}{n}
+%     \rput(2.51,-2.115){$r$}
+%     \psline[linewidth=0.04cm,linecolor=color58](1.5,1.86)(2.5,0.96)
+%     \psline[linewidth=0.04cm,linecolor=color58](0.5,0.96)(1.5,1.86)
+%     \psline[linewidth=0.04cm,linecolor=color58](2.5,0.46)(3.1,-0.44)
+%     \psline[linewidth=0.04cm,linecolor=color58](1.9,-0.44)(2.5,0.46)
+%     \psline[linewidth=0.04cm,linecolor=color58](0.5,0.46)(0.5,-0.44)
+%     \psline[linewidth=0.04cm,linecolor=color58](1.3,-1.84)(1.9,-0.94)
+%     \psline[linewidth=0.04cm,linecolor=color58](1.9,-0.94)(2.5,-1.84)
+% \end{pspicture}
+% \end{center}
+
+
+\subsection[Sémantique]{Sémantique : interprétation des formules}
+\noindent \textbf{Exemple.}  On reprend l'exemple ci-dessus.  En
+associant des valeurs dans $\Bo=\{ 0,\,1\}$ aux propositions $p$, $q$,
+$r$ et $s$, on peut obtenir une valeur (également dans $\Bo$) pour la
+formule $F$, et plus généralement pour toute formule portant sur des
+propositions de $\{ p,\, q,\, r,\, s\}$. Par exemple, l'interprétation
+$p \mapsto 0,\; q \mapsto 0,\; r \mapsto 1,\; s \mapsto 1$ produit la
+valeur $1$ pour $F$. 
+
+\medskip Dans le cas général, une interprétation est une application
+$I\colon\mathcal{P}\longrightarrow \Bo$. A partir d'une telle
+application, qui associe à chaque proposition de $\mathcal{P}$ une
+valeur dans $\Bo=\{ 0,\,1\}$, il est possible de déduire une
+interprétation de toutes les formules de CP.
+\begin{definition}
+  Soit $I\colon\mathcal{P} \longrightarrow \{ 0,\,1\}$ une
+  interprétation des symboles de $\mathcal{P}$.  Le prolongement de
+  $I$ aux formules du calcul propositionnel est l'application encore
+  notée $I$ (au lieu de $I^{*}$) de CP $\longrightarrow \{ 0,\,1\}$
+  définie inductivement par :
+\begin{itemize}
+\item[(B)] Si $F=p$, alors $I(F)=I(p)$.
+\item[(I)] Si $F=\neg G$, alors $I(F)=\overline{I(G)}$,\\
+  si $F=F_{1}\vee F_{2}$ alors $I(F)=I(F_{1})+I(F_{2})$ \\ et si
+  $F=F_{1}\wedge F_{2}$ alors $I(F)=I(F_{1})I(F_{2})$.
+\end{itemize}
+\end{definition}
+\noindent Ceci correspond bien à interpréter les symboles d'opérations
+de la façon usuelle : $\neg$ comme la négation, $\wedge$ comme la
+conjonction et $\vee$ comme la disjonction.
+\begin{proposition}
+Soit $I$ une interprétation. Alors : 
+\begin{enumerate}
+\item $I(F_{1}\to F_{2})=I(F_{2}) + \overline{I(F_1)}$
+\item $I(F_{1}\opeq F_{2})=I(F_{1}).I(F_{2})+\overline{I(F_{1})}.\overline{I(F_{2})}$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+  Montrons le premier point de la proposition précédente, le point 2. est
+  laissé en exercice.
+\begin{eqnarray*}
+  I(F_{1}\to F_{2}) & = & I(F_2 \vee \neg F_{1}) 
+\mbox{ par définition de }F_{1}\to F_{2}\\
+  & = &I(F_{2}) + I(\neg F_{1}) \mbox{ par définition de }I(X \vee Y)\\
+  & = & I(F_{2}) + \overline{I(F_{1})} \mbox{ par définition de }I(\neg X)\\
+\mbox{donc }  I(F_{1}\vee F_{2}) & = & I(F_{2})+ \overline{I(F_{1})} 
+\end{eqnarray*}
+% \begin{enumerate}
+% \item $I(F_{1}\wedge F_{2})=I(F_{1}).I(F_{2})$\begin{eqnarray*}
+% I(F_{1}\wedge F_{2}) & = & I(\neg(F_{1}\to\neg F_{2}))\mbox{ par définition de }F_{1}\wedge F_{2}\\
+%  & = & \overline{I(F_{1}\to\neg F_{2})}\mbox{ par définition de }I(\neg X)\\
+%  & = & \overline{\overline{I(F_{1})}+I(\neg F_{2})}\mbox{ par définition de }I(X\to Y)\\
+%  & = & \overline{\overline{I(F_{1})}+\overline{I(F_{2})}}\mbox{ par définition de }I(\neg X)\\
+%  & = & \overline{\overline{I(F_{1})}}.\overline{\overline{I(F_{2})}}\mbox{ par les lois de De Morgan}\\
+% I(F_{1}\wedge F_{2}) & = & I(F_{1}).I(F_{2})\end{eqnarray*}
+
+% \item $I(F_{1}\opeq F_{2})=I(F_{1}).I(F_{2})+\overline{I(F_{1})}.\overline{I(F_{2})}$\begin{eqnarray*}
+% I(F_{1}\opeq F_{2}) & = & I((F_{1}\to F_{2})\wedge(F_{2}\to F_{1}))\mbox{ par définition de }F_{1}\opeq F_{2}\\
+%  & = & I(F_{1}\to F_{2}).I(F_{2}\to F_{1})\mbox{ par définition de }I(X\wedge Y)\\
+%  & = & (\overline{I(F_{1})}+I(F_{2})).(\overline{I(F_{2})}+I(F_{1}))\mbox{ par définition de }I(X\to Y)\\
+%  & = & \overline{I(F_{1})}.\overline{I(F_{2})}+\overline{I(F_{1})}.I(F_{1})+I(F_{2}).\overline{I(F_{2})}+I(F_{2}).I(F_{1})\mbox{ en développant}\\
+% I(F_{1}\opeq F_{2}) & = & \overline{I(F_{1})}.\overline{I(F_{2})}+I(F_{2}).I(F_{1})\end{eqnarray*}
+% \end{enumerate}
+\end{proof}
+
+\noindent \textbf{Exemple.}  Soit $F=\neg p\wedge((q\vee r)\to
+s)$\begin{eqnarray*}
+  I(F) & = & \overline{I(p)}.I((q\vee r)\to s)\\
+  & = & \overline{I(p)}.(\overline{I(q\vee r)}+I(s))\\
+  & = & \overline{I(p)}.(\overline{I(q)+I(r)}+I(s))\\
+  I(F) & = &
+  \overline{I(p)}.(\overline{I(q)}.\overline{I(r)}+I(s))\mbox{ d'après
+    les lois de De Morgan}
+\end{eqnarray*} 
+On retrouve le fait que si $I(p)=0,\; I(r)=1,\; I(q)=0$ et $I(s)=1$,
+alors $I(F)=1$.  
+
+%\clearpage
+\begin{definition}
+Soit $F$ une formule.
+\begin{itemize}
+\item $F$ est valide (ou une tautologie) si pour toute interprétation
+  $I$, $I(F)=1$.
+\item $F$ est satisfaisable s'il existe une interprétation $I$ telle
+  que $I(F)=1$.
+\item $F$ est non satisfaisable si pour toute interprétation $I$,
+  I$(F)=0$.
+\end{itemize}
+% Un ensemble $\mathcal{F}$ de formules est satisfaisable s'il
+% existe une interprétation $I$ qui satisfait toutes les formules $F$ de
+% $\mathcal{F}$. Autrement dit, si $\F=\{F_1, \ldots, F_n\}$, alors $\F$
+% est satisfaisable si la formule $\bigwedge_{i=1}^{n}F_{i}$ est
+% satisfaisable, c'est-à-dire s'il existe $I$ telle que pour tout $i=1,
+% \ldots, n$, $I(F_i)=1$.
+\end{definition}
+\noindent \textbf{Remarque 1.} Lorsqu'une interprétation $I$ est telle
+que $I(F)=1$, on note parfois $I\vDash F$ qui se lit : \og $I$
+satisfait $F$ \fg{} ou \og $F$ est vraie pour $I$ \fg{}.\\
+\textbf{Remarque 2.}  Une formule $F$ est non satisfaisable si et
+seulement si $\neg F$ est valide.
+
+% \noindent \begin{center}
+% \begin{pspicture}(0,-2.28)(3.36,2.28) \definecolor{color58}{rgb}{0.6,0.0,0.6} 
+% \psellipse[linewidth=0.04,linecolor=color58,dimen=outer](1.68,0.0)(1.68,2.28) 
+% \usefont{T1}{ptm}{m}{it} \rput(1.68,1.885){valide} \usefont{T1}{ptm}{m}{it} 
+% \rput(1.69,0.4){satisfaisable,} \rput(1.69,-0.1){mais non valide} 
+% \usefont{T1}{ptm}{m}{it} \rput(1.68,-1.055){non satisfaisable} 
+% \psline[linewidth=0.04cm,linecolor=color58](0.14,0.86)(3.24,0.86) 
+% \psline[linewidth=0.04cm,linecolor=color58](3.24,-0.74)(0.14,-0.74) 
+% \usefont{T1}{ptm}{m}{n} \rput(1.71,1.265){$p\vee \neg p$} 
+% \usefont{T1}{ptm}{m}{n} \rput(1.68,-1.535){$p\wedge \neg p$} 
+% \end{pspicture} 
+% \par\end{center}
+
+\noindent \textbf{Exemple.}  Pour le problème de Kerstin, Pollet et
+Anne, on considère la formule : $F= A \wedge B \wedge C$ (en omettant
+les parenthèses puisque l'interprétation de $\wedge$ est associative),
+avec $A=p \to (q \wedge r)$, $B=\neg p\to q$ et $C= \neg p \to
+r$. Donc pour toute interprétation $I$, on a : $I(A) = I(q)I(r) +
+\overline{I(p)}$, $I(B) = I(q) + I(p)$ et $I(C) = I(r) + I(p)$. 
+Le problème posé revient à chercher les
+interprétations $I$ pour lesquelles $F$ est vraie, c'est-à-dire
+$I(F)=1$.\\ En posant $x= I(p)$, $y=I(q)$, $z=I(r)$, on obtient $I(F)
+= (yz+\overline{x})(x+y)(x+z)$, on retrouve donc la fonction booléenne
+: $f(x,y,z)=(yz+\overline{x})(x+y)(x+z)$, pour laquelle on avait vu
+que $f(x,y,z)=yz$. Donc $I(F)=1$ si et seulement si l'interprétation
+$I$ est telle que $y=I(q)=1$ et $z=I(r)=1$. Ainsi, on en déduit que
+Anne et Pollet iront à la conférence mais qu'on ne sait pas pour
+Kerstin.
+
+\subsection{Equivalence sémantique}
+\begin{definition}
+Deux formules $F$ et $G$ sont équivalentes, noté $F\sim G$, si
+pour toute interprétation $I$, on a : $I(F)=I(G)$.
+\end{definition}
+\noindent \textbf{Remarque 1.} La relation $\sim$ sur l'ensemble $CP$
+des formules du calcul propositionnel est une relation d'équivalence.\\
+\textbf{Exemples.}  Les formules $p$ et $\neg(\neg p)$ sont
+équivalentes, et en général :
+\begin{itemize}
+\item $F\sim\neg(\neg F)$
+\item $F\vee G\sim G\vee F$ (car $+$ est commutatif dans $\Bo$)
+\item $\neg(F\vee G)\sim(\neg F\wedge\neg G)$
+\end{itemize}
+
+\noindent \textbf{Remarque 2.}  On obtient des propriétés similaires à
+l'associativité, l'idempotence, l'absorption, la distributivité, etc.
+mais avec $\sim$ au lieu de l'égalité. Ainsi, l'ensemble quotient
+$CP/\sim$ est une algèbre de Boole.\\
+
+\noindent \textbf{Remarque 3.}  Sur $\mathcal{P}=\{ p_{1},\,\dots,\,
+p_{n}\}$, une interprétation $I\colon\mathcal{P}\longrightarrow \Bo$
+peut être identifiée au $n$-uplet de ses valeurs
+$I=(I(p_{1}),\,\dots,\, I(p_{n}))\in \Bo^n$. On peut donc associer à
+toute formule $F$ sur $\mathcal{P}$ une fonction booléenne
+$g_{F}\colon \Bo^{n} \longrightarrow \Bo$ définie par $g_{F}(I)=I(F)$. 
+Ainsi :
+\begin{proposition}
+  L'ensemble des fonctions booléennes est en bijection avec l'ensemble
+  $CP/\sim$ (qui contient les formules du calcul propositionnel à
+  équivalence près).
+\end{proposition}
+\noindent \textbf{Exemple.}  Soit $\begin{array}[t]{cccc}
+  f\colon & \Bo^{2} & \longrightarrow & \Bo\\
+  & (x,\, y) & \longrightarrow & \overline{x+y}\end{array}$\\
+La formule $F$ de $CP$ qui lui est associée est $\neg (p \vee q)$
+sur $\{ p,q\}$.\\
+Cette correspondance permet d'associer à toute formule $F$ une formule
+$F'$ sous forme normale conjonctive (FNC) et une formule $F''$ sous
+forme normale disjonctive (FND), qui sont équivalentes à $F$.
+% \begin{definition}
+%   Une clause est une formule de la forme $c_{1}\vee c_{2}\vee \ldots
+%   \vee c_{n}$ où, pour tout $i=1,\ldots,n$, ou bien
+%   $c_{i}=p\in\mathcal{P}$, ou bien $c_i=\neg p\in\mathcal{P}$.
+% \end{definition}
+% On obtient alors :
+% \begin{proposition}
+% Toute formule est équivalente à une conjonction de clauses (FNC).
+% \end{proposition}
+
+\subsection{Conséquence sémantique}
+\begin{definition}
+  Pour deux formules $F$ et $G$, on dit que $G$ est conséquence de
+  $F$, ou que $F$ satisfait $G$, noté $F\models G$ si pour toute
+  interprétation $I$, si $I(F)=1$, alors $I(G)=1$.
+\end{definition}
+\begin{proposition}
+$F$ satisfait $G$ ssi $(F\to G)$ est valide.
+\end{proposition}
+\begin{proof}
+  Montrons l'équivalence des négations, c'est-à-dire : $F$ ne
+  satisfait pas $G$ ssi $(F\to G)$ n'est pas valide.
+
+  $\bullet$ Si $F$ ne satisfait pas $G$, alors, par définition, il
+  existe une interprétation $I$ telle que $I(F)=1$ et $I(G)=0$. Pour
+  cette interprétation $I$, on a $I(F\to G)=\overline{I(F)}+I(G)=0$,
+  donc $(F\to G)$ n'est pas valide.
+
+  $\bullet$ Réciproquement, si $(F\to G)$ n'est pas valide, alors il
+  existe une interprétation $I$ telle que $I(F\to G)=0$, avec $I(F\to
+  G)=\overline{I(F)}+I(G)$. Pour que la somme soit nulle, il faut que
+  $I(F)=1$ et $I(G)=0$, donc $F$ ne satisfait pas $G$.
+
+  \noindent Conclusion : $F$ satisfait $G$ ssi $(F\to G)$ est
+  valide.
+\end{proof}
+\begin{proposition}
+$F$ est équivalente à $G$ ssi $F\opeq G$ est valide.
+\end{proposition}
+
+\noindent La démonstration reprend le schéma précédent, elle est
+laissée en exercice. On peut aussi vérifier que $F \sim G$ ssi $F
+\models G$ et $G \models F$ et utiliser la proposition précédente.
+
+% \begin{proof}
+%   Si $F\sim G$, alors pour toute interprétation $I$, $I(F)=I(G)$\\
+%   Or par définition, $I(F\opeq
+%   G)=I(F).I(G)+\overline{I(F)}.\overline{I(G)}$, donc $I(F\opeq
+%   G)=I(F)+\overline{I(F)}=1$.  Ainsi, pour toute interprétation $I$,
+%   $I(F\opeq G)=1$ et $F\opeq G$ est valide.
+
+%   Réciproquement, si $F\opeq G$ est valide, alors $I(F\opeq
+%   G)=I(F).I(G)+\overline{I(F)}.\overline{I(G)}=1$ pour toute
+%   interprétation $I$.\\  Supposons $I(F)\ne I(G)$. On aurait alors :
+% \begin{itemize}
+% \item Si $I(F)=1$, alors $I(G)=0$ et $I(F\opeq G)=0$
+% \item Si $I(F)=0$, alors $I(G)=1$ et $I(F\opeq G)=0$
+% \end{itemize}
+% Ainsi, $I(F)=I(G)$ pour toute interprétation $I$ et donc $F\sim G$.
+% \end{proof}
+
+\medskip \noindent On étend les définitions de la conséquence
+sémantique $\models$ à des ensembles de formules.
+\begin{definition}
+  Soit $\mathcal{F}=\{ F_{1},\,\dots,\, F_{n}\} $ un ensemble fini de
+  formules et $G$ une formule.
+\begin{itemize}
+\item On dit que $\mathcal{F}$ est satisfaisable s'il existe une
+  interprétation $I$ telle que pour toute formule $F \in \mathcal{F}$,
+  on ait $I(F)=1$. Donc $\mathcal{F}$ est satisfaisable si la formule
+  $\bigwedge_{i=1}^{n}F_{i}$ est satisfaisable.
+\item On note $\mathcal{F}\models G$ si
+  $\bigwedge_{i=1}^{n}F_{i}\models G$, c'est-à-dire : pour toute
+  interprétation $I$, si pour toute formule $F \in \F$, $I(F)=1$,
+  alors $I(G)=1$.
+\end{itemize}
+\end{definition}
+%\medskip{}
+\noindent \textbf{Exemple.} Montrer que $\mathcal{H}=\{ p,\, p\to
+q,\,\neg q\} $ n'est pas satisfaisable.
+
+\begin{definition}
+  Un séquent est une paire $(\mathcal{F},\,G)$ où $\mathcal{F}$ est un
+  ensemble de formules et $G$ une formule.  Le séquent
+  $(\mathcal{F},\,G)$ est valide si $\mathcal{F}\models G$.
+\end{definition}
+
+\noindent \textbf{Exemple.}  Soient $\mathcal{F}=\{ p,\, p\to q\} $ et
+$G=q$, on vérifie que $(\mathcal{F},\,G)$ est un séquent valide.
+
+Montrons que pour toute interprétation $I$, si pour toute
+$F\in\mathcal{F},\; I(F)=1$, alors $I(G)=1$.
+Ceci revient à montrer $(p)\wedge(p\to q)\models q$.
+
+Supposons $I(p)=I(p\to q)=1$. Or $I(p\to
+q)=\overline{I(p)}+I(q)=1$. Mais comme $I(p)=1$, on a
+$\overline{I(p)}=0$ et $I(q)=1$.  Ainsi, $(\mathcal{F},\,G)$ est un
+séquent valide.
+
+\medskip \noindent \textbf{Remarque.}  Soit $\F'$ l'ensemble obtenu en
+remplaçant dans $\mathcal{F}$ un des $F_{i}$ par $F_{i}'$ tel que
+$F_{i}\sim F_{i}'$. Alors : \\
+- $\F$ est satisfaisable ssi $\F'$ est satisfaisable et \\
+- $(\mathcal{F},\, G)$ est valide ssi $(\mathcal{F}',\, G)$ est
+valide.
+
+%\clearpage
+\begin{proposition} Soit $\Hr$ un ensemble de formules, et $F$, $G$
+  deux formules.  On a les équivalences suivantes :
+\begin{enumerate}
+\item $\mathcal{H}\models G$ ssi $\mathcal{H}\cup\{ \neg G\} $
+est non satisfaisable.
+\item $\mathcal{H}\cup\{ F\} \models G$ ssi $\mathcal{H}\models(F\to G)$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\begin{enumerate}
+\item On démontre l'équivalence des négations. 
+\begin{itemize}
+\item Supposons $\mathcal{H}\cup\{ \neg G\} $ satisfaisable.\\
+Alors il existe une interprétation $I$ telle que $I(F)=1$
+pour toute formule $F$ de $\mathcal{H}$ et $I(\neg G)=1$, 
+donc $I(G)=0$.\\
+Donc on n'a pas $\mathcal{H}\models G$.
+\item Réciproquement, supposons que $\mathcal{H}\models G$ est
+  faux. Alors il existe une interprétation $I$ telle que $I(F)=1$
+  pour toute $F$ de $\mathcal{H}$
+  et $I(G)=0$.\\
+  Alors $I(\neg G)=1$ donc $I$ satisfait $\mathcal{H}\cup\{ \neg G\} $.
+\end{itemize}
+\item Montrons cette proposition à l'aide d'équivalences.
+\begin{eqnarray*}
+  \mathcal{H}\cup\{ F\} \models G & \mbox{ssi} & \mathcal{H}\cup\{ F,\,\neg G\} \mbox{ non satisfaisable d'après (1.)}\\
+  & \mbox{ssi} & \mathcal{H}\cup\{ \neg(F\to G)\} \mbox{ non satisfaisable}\\
+  & \mbox{ssi} & \mathcal{H}\models (F\to G)\mbox{ encore par (1.)}
+\end{eqnarray*}
+\end{enumerate}
+\end{proof}
+
+\subsection{Conséquence logique (ou déduction)}
+\begin{definition}
+  Un séquent $\left(\mathcal{F},\, G\right)$ est dit prouvable, noté
+  $\mathcal{F}\vdash G$, s'il est obtenu après un nombre fini
+  d'applications des six règles suivantes, où $\Hr$ est un ensemble de
+  formules, $F$ et $G$ des formules :
+\begin{enumerate}
+
+\item[(a)] Utilisation d'une hypothèse : 
+si $F\in \Hr$, alors $\mathcal{H}\vdash F$
+
+\item[(b)] Augmentation d'hypothèse : 
+si $G\notin\mathcal{H}$ et $\mathcal{H}\vdash F$, 
+alors $\mathcal{H}\cup \{ G\} \vdash F$
+
+\item[(c)] Modus ponens :
+si $\mathcal{H}\vdash\left(F\to G\right)$ et $\mathcal{H}\vdash F$,
+alors $\mathcal{H}\vdash G$
+
+\item[(d)] Retrait d'hypothèse (synthèse) : 
+si $\mathcal{H}\cup\left\{
+    F\right\} \vdash G$, alors $\mathcal{H}\vdash\left(F\to G\right)$
+
+\item[(e)] Double négation : $\mathcal{H}\vdash F$ ssi
+  $\mathcal{H}\vdash\neg\neg F$
+
+\item[(f)] Absurde : 
+si $\mathcal{H}\cup\left\{ F\right\} \vdash G$ 
+et $\mathcal{H}\cup\left\{ F\right\} \vdash\neg G$,
+alors $\mathcal{H}\vdash\neg F$
+
+\end{enumerate}\end{definition}
+\noindent \textbf{Exemple.}
+Preuve de la démonstration par contraposée : 
+
+On veut prouver : $p\to q\vdash\left(\neg q\to\neg p\right)$
+\begin{enumerate}
+\item $\left\{ p\to q,\,\neg q,\, p\right\} \vdash p$ {d'après
+a)}
+\item $\left\{ p\to q,\,\neg q,\, p\right\} \vdash\neg q$ d'après a)
+\item $\left\{ p\to q,\,\neg q,\, p\right\} \vdash p\to q$ {d'après
+a)}
+\item $\left\{ p\to q,\,\neg q,\, p\right\} \vdash q$ d'après c) appliquée
+à 1 et 3
+\item $\left\{ p\to q,\,\neg q\right\} \vdash\neg p$ d'après f) sur 2 et
+4
+\item $\left\{ p\to q\right\} \vdash\left(\neg q\to\neg p\right)$ d'après
+d)
+\end{enumerate}
+
+\begin{theorem}
+Un séquent $(\mathcal{F},\, G)$ est valide ssi il est prouvable.
+\end{theorem}
+
+\noindent \textbf{Remarque.}
+Signification des deux sens de l'équivalence :
+\begin{itemize}
+\item Sens $\Rightarrow$ : Complétude - \emph{Ce qui est vrai peut être
+prouvé.}
+\item Sens $\Leftarrow$ : Correction/adéquation : \emph{Ce qui peut être
+prouvé est vrai.}
+\end{itemize}
+
+\begin{proof}[Principe de la démonstration de correction]
+Par induction sur la longueur de la preuve.\\
+A partir d'un séquent valide, en appliquant une des six règles
+a), ..., f) on obtient un nouveau séquent valide.
+
+Par exemple avec la règle a) :\\
+On suppose que $\mathcal{F}\vdash G$ a été obtenu par la règle a),
+donc : $G\in\mathcal{F}$.  Si $I$ est une interprétation telle que
+$I(F)=1$ pour toute formule $F$ de $\mathcal{F}$, alors $I(G)=1$
+puisque $G\in\mathcal{F}$, donc $\mathcal{F}\models G$ et le séquent
+est valide.
+\end{proof}
+
+
+%\clearpage
+\section{Logique du premier ordre}
+La logique du premier ordre enrichit le calcul propositionnel en utilisant :
+\begin{itemize}
+\item des termes construits avec des variables et des fonctions,
+\item des formules construites à partir de relations sur les termes,
+  avec des opérateurs booléens et des quantifications sur les
+  variables.
+\end{itemize}
+Par exemple $F: \ \forall x \exists y R(x,y)$ est une formule de la
+logique du 1er ordre. Dans cette formule, $x$ et $y$ sont des
+variables et $R(x,y)$ est une formule atomique construite en utilisant
+une relation binaire $R$.
+\begin{itemize}
+\item Si $F$ est interprétée sur les entiers naturels, avec pour $R$ la
+  relation $<$, on obtient : \emph{Pour tout entier $x$, il existe un
+    entier $y$ strictement plus grand que $x$}, ce qui exprime que
+  l'ensemble des entiers naturels n'a pas d'élément maximal.
+\item Si $F$ est interprétée sur l'ensemble des personnes avec pour
+  $R$ la relation défnie par $R(x,y)$ si $y$ est la mère de $x$, la formule
+  exprime que \emph{toute personne a une mère}. 
+\item Si $F$ est interprétée dans les mondes de Tarski, avec pour $R$
+  la relation $LeftOf$, elle exprime que tout objet est à gauche d'un
+  autre objet.
+\end{itemize}
+
+\subsection{Syntaxe}
+On considère un ensemble $\G$ de symboles de fonctions et un ensemble
+$\Rel$ de symboles de relations.  En particulier, on notera :
+\begin{itemize}
+\item $\C = \G_0$ l'ensemble des symboles de fonctions sans argument,
+  c'est-à-dire les constantes,
+\item $\Pa = \Rel_0$ l'ensemble des symboles de relations d'arité
+  nulle, c'est-à-dire les propositions (du calcul propositionnel), qui
+  seront interprétées dans $\Bo = \{0,1\}$.
+\end{itemize}
+On considère aussi un ensemble $X$ de variables et on définit les
+termes et les formules de la logique du premier ordre associés à $\G
+\cup \Rel \cup X$.
+\begin{definition}[Termes avec variables] L'ensemble $T(\G,X)$ des
+  termes est défini inductivement par :
+\begin{itemize}
+\item[(B)] toute constante de $\C$ est un terme et toute variable de
+  $X$ est un terme,
+\item[(I)] si $f \in \G$ a $n$ arguments et si $t_1, \ldots, t_n$ sont
+  des termes, alors $f(t_1, \ldots, t_n)$ est un terme.
+\end{itemize}
+%Les termes sans variables sont appelés des termes \emph{clos}.
+\end{definition}
+
+\begin{definition}[Formules] Les formules de la logique du premier
+  ordre sur $\G$ et $\Rel$ sont définies inductivement par :
+\begin{itemize}
+\item[(B)] si $R \in \Rel$ a $n$ arguments et si $t_1, \ldots, t_n$
+  sont des termes, alors $R(t_1, \ldots, t_n)$ est une formule dite
+  \emph{atomique},
+\item[(I)] si $F$ et $G$ sont des formules alors $\neg F$, $(F \wedge
+  G)$, $(F \vee G)$, $(F \to G)$ sont des formules,\\
+  Si $x$ une variable alors $\forall x F$ et $\exists x F$ sont des
+  formules.
+\end{itemize}
+\end{definition} 
+
+\noindent Par exemple, dans la formule $\forall x \forall y
+(R(f(x,y),a) \to (R(x,a) \wedge R(y,a)))$, on trouve les termes $a$
+(constante), $x$, $y$ (variables) et $f(x,y)$, pour une fonction $f$ à
+deux arguments, ainsi qu'une relation binaire $R$.  On pourra par la
+suite interpréter cette formule dans $\N$, avec l'addition pour $f$,
+l'égalité pour $R$, et la valeur $0$ pour $a$.
+
+\medskip \noindent \textbf{Remarque 1.}  Les formules du calcul
+propositionnel sont des cas particuliers de cet ensemble.
+
+\medskip \noindent \textbf{Remarque 2.} Les formules 
+peuvent être représentées par des arbres. 
+
+%Par exemple, la formule $F : \ \forall z R(x,z) \to \exists y (R(y,z)
+%\wedge Q(y,z))$ est représentée par l'arbre :
+
+% \begin{center} 
+% \begin{picture}(90,70)(0,0)
+%   \gasset{Nframe=n,AHnb=0}
+
+% \node(E1)(35,65){$\to$}  
+% \node(E2)(15,50){$\forall z$}  \node(E3)(55,50){$\exists y$}  
+% \node(E4)(15,35){$R$}  \node(E5)(55,35){$\wedge$}  
+% \node(E6)(5,20){$x$} \node(E7)(25,20){$z$} 
+% \node(E8)(40,20){$R$} \node(E9)(70,20){$Q$}
+% \node(E10)(30,5){$y$} \node(E11)(50,5){$z$}
+% \node(E12)(60,5){$y$} \node(E13)(80,5){$z$}
+
+%  \drawedge(E1,E2){} \drawedge(E1,E3){}  
+% \drawedge(E2,E4){} \drawedge(E3,E5){} 
+% \drawedge(E4,E6){} \drawedge(E4,E7){} 
+% \drawedge(E5,E8){} \drawedge(E5,E9){} 
+% \drawedge(E8,E10){} \drawedge(E8,E11){} 
+% \drawedge(E9,E12){} \drawedge(E9,E13){} 
+
+% \end{picture}
+% \end{center} 
+%\clearpage
+\subsection{Variables libres et liées}
+
+\begin{definition}[Variables d'un terme ou d'une formule]~\\
+\vspace*{-0.5cm}
+\begin{enumerate}
+\item Les variables d'un terme sont définies inductivement par :
+\begin{itemize}
+\item $Var(x)=\{x\}$ si $x\in X$ et $Var(c) = \emptyset$ si $c \in \C$,
+\item $Var(f(t_1, \ldots, t_n)) = \bigcup_{i=1}^{n} Var(t_i)$ pour un terme 
+$f(t_1, \ldots, t_n)$.
+\end{itemize}
+\item Les variables d'une formule sont définies inductivement par :
+\begin{itemize}
+\item $Var(R(t_1, \ldots, t_n)) = \bigcup_{i=1}^{n} Var(t_i)$ pour une
+  formule atomique,
+\item si $F$ et $G$ sont des formules, $x$ est une variable et $* \in
+  \{\wedge, \vee, \to \}$, alors : $Var(\neg F) = Var(F)$,
+  $Var(F*G) = Var(F) \cup Var(G)$, $Var(\exists x F)= Var(\forall x F)
+  = Var(F) \cup \{x\}$.
+\end{itemize}
+\end{enumerate}
+\end{definition} 
+
+\noindent \textbf{Remarque.} Les variables et les constantes n'ayant
+pas d'argument, elles n'ont pas de descendant et sont toujours en
+position de feuilles dans l'arbre associé à une formule.
+
+\begin{definition}[Variables libres et liées]~\\
+\vspace{-0.4cm}
+\begin{itemize}
+\item Dans l'arbre d'une formule $F$, une feuille
+  d'étiquette $x\in X$ est une occurrence \emph{libre} de $x$ s'il n'y
+  a aucun quantificateur $\forall x$ ou $\exists x$ dans les
+  ascendants de cette feuille. \\  Sinon, l'occurrence est dite
+  \emph{liée}.
+\item Une variable est \emph{libre} dans une formule $F$ si elle a
+  \textbf{au moins} une occurrence libre dans cette formule. Elle est
+  \emph{liée} dans une formule si elle n'est pas libre dans cette
+  formule.
+\end{itemize}
+\end{definition}
+
+On note $L(F)$ l'ensemble des variables libres dans $F$ et $B(F)=
+Var(F) \setminus L(F)$ l'ensemble des variables liées dans $F$ ($B$
+pour \emph{bound} en anglais).
+
+Par exemple, dans la formule $F$ ci-dessus, en considérant les
+feuilles de gauche à droite, l'occurrence de $x$ est libre,
+l'occurrence de $z$ est liée, puis les deux occurrences de $y$ sont
+liées tandis que les deux occurrences de $z$ sont libres.\\
+Par conséquent, $L(F) =\{ x,\, z \} $ et $B(F)=\{y\}$ 
+
+\begin{definition}[Formule close]
+Une formule est dite \emph{close} si elle n'a aucune variable libre.
+\end{definition}
+
+
+\begin{proposition}
+  Les variables libres d'une formule sont définies inductivement par :
+\begin{itemize}
+\item[$(B)$]  $L(R(t_{1},\,\dots,\, t_{n}))=\bigcup_{i=1}^{n}Var(t_{i})$
+\item[$(I)$]  Pour $F$ et $G$ deux formules, 
+\begin{itemize}
+\item $L(\neg F)=L(F)$ et $L(F\star G)=L(F)\cup L(G)$
+pour $\star\in\{ \wedge,\,\vee,\,\to\} $
+\item $L(\forall xF)=L(\exists xF)=L(F) \setminus \{ x\} $
+\end{itemize}
+\end{itemize}
+\end{proposition}
+
+
+\subsection{Sémantique}
+
+Pour interpréter les formules, on va considérer une structure
+$\mathcal{M}$, donnée par :
+\begin{itemize}
+\item un domaine $D$,
+\item pour toute fonction $f$ de $\mathcal{G}$ à $n$ arguments, une
+  fonction
+  $f_{D}\colon D^{n}\longrightarrow D$
+\item Pour toute relation $R$ de $\mathcal{R}$ à $n$ arguments, une
+  relation $R_{D}\subseteq D^{n}$
+\end{itemize}
+En particulier, une constante $a$ correspond à un élément $a_{D}$ de
+$D$ et une proposition $p$ (relation sans argument) correspond à un
+élément de $\Bo=\{ 0,\,1\}$.
+
+On note $\mathcal{M}=(D,\,(f_{D})_{f\in\mathcal{G}},
+\,(R_{D})_{R\in\mathcal{R}})$ une telle structure.
+
+\medskip \noindent \textbf{Exemple 1.}  Dans la structure $\M = (\R,
+0, 1, +, \times, =)$, le domaine est $D=\R$, l'ensemble des nombres
+réels, les fonctions sont : les constantes $0$ et $1$, l'addition, la
+multiplication et il y a un seul prédicat qui est l'égalité.\\
+Le terme $((x\odot x)\oplus x)\oplus a$ peut être interprété sur ce
+domaine, avec $a_{\R} = 1$, $\oplus_{\R}$ est l'addition, $\odot_{\R}$
+est la multiplication. Il représente donc le polynôme $P$ défini par
+$P(x)=x^{2}+x+1$.\\
+Considérons maintenant la formule atomique $F\colon Q(((x\odot
+x)\oplus x)\oplus a,\, b)$. En interprétant le prédicat binaire $Q$
+comme l'égalité et avec $b_{\R} = 0$, cette formule s'interpréte comme
+un prédicat unaire avec $x$ comme variable libre: $P(x) = 0$.\\
+La formule $\exists x F$ correspond alors à l'énoncé : le
+polynôme $P$ a une racine dans $\R$.
+
+\medskip \noindent \textbf{Exemple 2.}  Lorsque $\mathcal{M}$ décrit
+une base de données, les requêtes sont des formules.
+
+\begin{definition}
+  Pour une structure $\mathcal{M}$ avec domaine $D$, une valuation
+  est une application $v\colon X\longrightarrow D$.
+\end{definition}
+\begin{proposition}
+  Etant données une structure $\mathcal{M}$ associée à
+  $\mathcal{G}\cup\mathcal{R}$, avec domaine $D$, et une valuation
+  $v\colon X\longrightarrow D$, la valeur d'un terme $v^{*}(t)\in D$
+  est définie inductivement par :
+\begin{itemize}
+\item[($B$)] $v^{*}(a)=a_{D}$ pour une constante $a$ et 
+$v^{*}(x)=v(x)$ pour une variable $x\in X$,
+\item[($I$)] Si $t=f(t_{1},\,\dots,\, t_{n})$ pour une fonction $f$ à
+  $n$ arguments et des termes $t_{1},\,\dots,\, t_{n}$, alors
+  $v^{*}(t)=f_{D}(v^{*}(t_{1}),\,\dots,\, v^{*}(t_{n}))$.
+\end{itemize}
+\end{proposition}
+
+\noindent \textbf{Remarque.} A chaque $v\colon X\longrightarrow\mathcal{D}$,
+on associe  $\begin{array}[t]{cccc}
+v^{*}\colon & T(\mathcal{G},\, X) & \longrightarrow & \mathcal{D}\\
+ & t & \longmapsto & v^{*}(t)\end{array}$
+\begin{definition}
+  Soient $\M$ une structure de domaine $D$, $v\colon X\longrightarrow
+  D$ une valuation, $x\in X$ une variable et
+  $a_{\mathcal{D}}\in\mathcal{D}$.\\
+  La valuation $v'=v[x\mapsto a_{D}]$ est définie par : $\begin{cases}
+    v'(y)=v(y) & \mbox{si }y\ne x\\
+    v'(x)=a_{D} & \end{cases}$
+\end{definition}
+
+\medskip \noindent \textbf{Exemple.}
+On considère $X=\{ x,\, y,\, z, \,w\} $ et $D=\N$. \\
+Déterminer $v_{1}=v[z\to 3]$ et $v_{2}=v_{1}[x\to 1]$ pour la
+valuation $v$ définie par :
+\[ 
+v\colon \left \{ 
+\begin{array}{c}
+x\mapsto2\\
+y\mapsto8\\
+z\mapsto7\\
+w\mapsto14\end{array} \right.
+\]
+
+\begin{definition}
+  On définit la valuation (ou valeur de vérité, ou interprétation)
+  d'une formule $F$, notée $\hat{v}(F)$, inductivement par :
+\begin{itemize}
+\item[$(B)$] Si $F=R(t_{1},\,\dots,\, t_{n})$, alors $\hat{v}(F)=1$
+ssi $(v^{*}(t_{1}),\,\dots,\, v^{*}(t_{n}))\in R_{D}$
+\item[$(B)$] Pour deux formules $F$ et $G$, et une variable $x$, 
+\begin{itemize}
+\item $\hat{v}(\neg F)=\overline{\hat{v}(F)}$
+\item $\hat{v}(F\wedge G)=\hat{v}(F)\hat{v}(G)$
+\item $\hat{v}(F \vee G)=\hat{v}(F)+\hat{v}(G)$
+%
+\item $\hat{v}(F \to G)=\overline{\hat{v}(F)}+\hat{v}(G)$
+\item $\hat{v}(\forall x F)=1$ ssi pour toute $a_{D}\in D$,
+  $\widehat{v[x\mapsto a_{D}]}(F)=1$
+%
+\item $\hat{v}(\exists x F)=1$ ssi il existe $a_{D}\in D$ tel que
+  $\widehat{v[x\mapsto a_{D}]}(F)=1$
+\end{itemize}
+\end{itemize}
+\end{definition}
+
+\noindent \textbf{Exemple 1.} Soit $F: \ Q(((x\odot x)\oplus x)\oplus
+a,\, b)$, la formule considérée précédemment, avec le même modèle, et
+la valuation $v$ telle que $v(x)=2$. Alors $\hat{v}(F)=0$.
+De plus, comme aucune valeur de $x$ ne peut être racine, on a aussi 
+$\hat{v}(\exists x F)=0$.
+
+\medskip \noindent \textbf{Exemple 2.}  Soit $F=R(f(x),\, g(y))$ et la
+structure $\mathcal{M}=(\N,\,f_{\N},\, g_{\N}, \, \leqslant)$, avec
+$f_{\N}(n)=n+1$ et $g_{\N}(n)=n+3$, et soit $v_0$ la valuation définie 
+par : $v_0\begin{cases}
+x\mapsto4\\
+y\mapsto3\end{cases}$
+\begin{itemize}
+\item $v_0^{*}(f(x))=f_{\N}(v_0(x))=f_{\N}(4)=5$
+\item $v_0^{*}(g(y))=g_{\N}(v_0(y))=6$
+\end{itemize}
+Ainsi, $\hat{v_0}(F)=1$ car $5\leqslant6$ et, plus généralement, 
+si $v$ est une valuation quelconque,  $\hat{v}(F)=1$ ssi $v(x)+1 \leq v(y)+3$.
+%\clearpage
+\begin{definition}
+~\\
+\vspace{-0.3cm} 
+\begin{enumerate}
+\item Etant données une formule $F$ et une structure $\mathcal{M}$,
+\begin{enumerate}
+\item $F$ est satisfaisable pour $\mathcal{M}$, s'il existe une
+  valuation $v$ telle que $\hat{v}(F)=1$.
+\item $F$ est valide pour $\mathcal{M}$, si pour toute valuation $v$,
+  $\hat{v}(F)=1$.\\
+  On dit alors que $\mathcal{M}$ est un modèle de $F$ (noté
+  $\mathcal{M}\models F$).
+\end{enumerate}
+\item Etant donnée une formule $F$ :
+\begin{enumerate}
+\item $F$ est satisfaisable s'il existe une structure $\mathcal{M}$ telle
+que $F$ est satisfaisable pour $\mathcal{M}$.
+\item $F$ est valide (ou universellement valide), si pour toute structure
+$\mathcal{M}$, $F$ est valide pour $\mathcal{M}$.
+\end{enumerate}
+\end{enumerate}
+\end{definition}
+
+\noindent \textbf{Remarque.}  Le problème 2.a est indécidable. \\
+Le problème 1.a est décidable pour des structures finies. C'est le cas
+par exemple pour la satisfaisabilité d'une requête dans une base de
+données.
+
+\begin{proposition}
+  Il existe un algorithme qui prend en entrée une structure
+  \emph{finie} $\mathcal{M}$ et une formule du premier ordre $F$, et
+  qui décide s'il existe une valuation $v$ telle que $\hat{v}(F)=1$.
+\end{proposition}
+
+\noindent Pour les structures infinies, c'est plus compliqué :
+\begin{itemize}
+\item Pour
+  $\mathcal{M}_{1}=(\underbrace{\N}_{D},\,\underbrace{0, \,
+    1,\,+,\,\times,\,\exp}_{\mathcal{G}},\,\underbrace{=}_{\mathcal{R}})$,
+  la satisfaisabilité (d'une formule du premier ordre) est
+  indécidable.  \\
+  Dommage... : $\exists n\exists x\exists y\exists
+  z(x^{n}+y^{n}=z^{n}) \wedge (n\geqslant3)$
+
+\medskip 
+\item Pour $\mathcal{M}_{2}=(\N,\, 0, \, 1, \,+,\,\times,\,=)$, le
+  problème est également indécidable.\\  
+  Dommage... : $\exists xP(x)=0$ où $P$ est un polynôme.
+
+\medskip
+
+\item Mais pour $\mathcal{M}_{3}=(\R,\,+,\,\times,\,<)$, le problème
+  est décidable !
+\end{itemize}
+
+\medskip
+\noindent \textbf{Exemples de modèles.}  Tout ensemble $E$ muni d'une
+relation binaire $R_E$ réflexive est un modèle de la formule $F_1 : \
+\forall x \ R(x,x)$.\\
+Tout ensemble ordonné $\M= (E, \preceq)$ est un modèle de la formule
+$F_1 \wedge F_2 \wedge F_3$ avec $F_1$ comme ci-dessus et :
+\begin{itemize}
+\item[] $F_2 : \ \forall x \ \forall y \ ((R(x,y) \wedge R(y,x)) \to x=y)$ 
+\item[] $F_3 : \ \forall x \ \forall y \ \forall z \ ((R(x,y) \wedge R(y,z)) 
+\to R(x,z))$
+\end{itemize}
+
+
+\subsection{Propriétés sémantiques}
+\begin{definition}
+Soit $\mathcal{M}$ une structure, $F$ et $G$ deux formules.
+\begin{itemize}
+\item $F\models G$ si, pour toute valuation $v$ de $\mathcal{M}$, si
+  $\hat{v}(F)=1$, alors $\hat{v}(G)=1$.  
+\medskip
+% \item Soit $\mathcal{F}=\{ F_{1},\,\dots,\, F_{n}\} $ un ensemble
+% fini de formules et $G$ une formule.\\
+% $\mathcal{F}\models G$ si ${\displaystyle \bigwedge_{i=0}^{n}F_{i}=F_{1}\wedge\cdots\wedge F_{n}\models G}$\\
+% (ie. pour toute valuation $v$, si $\hat{v}(F)=1$
+% pour toute $F\in\mathcal{F}$, alors $\hat{v}(G)=1$).
+% \medskip
+% \item Un séquent est une paire $(\mathcal{F},\, G)$ où $\mathcal{F}$
+% est un ensemble fini de formules et $G$ une formule.\\
+% Le séquent $(\mathcal{F},\, G)$ est valide dans $\mathcal{M}$
+% si $\mathcal{F}\models G$ dans $\mathcal{M}$.\\
+% Il est universellement valide s'il est valide dans toute structure.
+% \medskip
+\item $F$ et $G$ sont équivalentes, noté $F\sim G$ si
+  pour toute structure $\mathcal{M}$ et pour toute valuation $v$,
+  $\hat{v}(F)=\hat{v}(G)$
+\end{itemize}
+\end{definition}
+
+\noindent \textbf{Remarques.}
+
+\begin{itemize}
+\item On note parfois $\models_{\M}$ au lieu de $\models$ lorsqu'il y
+  a ambiguïté sur la structure considérée.
+\item Comme pour le calcul propositionnel, $F\sim G$ ssi pour toute
+  structure $\mathcal{M}$, on a : $F\models G$ et $G\models F$.
+\item On a toutes les équivalences du calcul propositionnel : \\
+$\neg(F\vee G)\sim\neg F\wedge\neg G,\;\neg\neg F\sim F,\;\dots$
+\item On voudrait des équivalences plus \og riches \fg{}, qui impliquent
+les variables.
+\end{itemize}
+ 
+\begin{proposition}
+  Soit $F$ une formule.  On a l'équivalence suivante :
+\[ \neg\forall x F\sim\exists x\neg F\]
+\end{proposition}
+\begin{proof}[Démonstration]
+Soit $\mathcal{M}$ une structure et $v$ une valuation. 
+On a :
+\begin{eqnarray*}
+\hat{v}(\neg\forall xF)=1 & \mbox{ssi} & \hat{v}(\forall xF)=0\\
+ & \mbox{ssi} & \mbox{il existe }a\in\mathcal{D}\mbox{ tq }\widehat{v[x\to a]}(F)=0\\
+ & \mbox{ssi} & \mbox{il existe }a\in\mathcal{D}\mbox{ tq }\widehat{v[x\to a]}(\neg F)=1\\
+ & \mbox{ssi} & \hat{v}(\exists x\neg F)=1\end{eqnarray*}
+\end{proof}
+\begin{lemma}
+Soit $\mathcal{M}$ une structure, $v_{1}$ et $v_{2}$ deux valuations.
+\begin{enumerate}
+\item Si $t$ est un terme tel que $v_{1}|_{\mbox{Var}(t)} = v_{2}|_{\mbox{Var}(t)}$
+($v_{1}$ et $v_{2}$ coïncident sur $\mbox{Var}(t)$),\\
+alors $v_{1}^{*}(t)=v_{2}^{*}(t)$
+\item Si $F$ est une formule telle que $v_{1}|_{\mbox{L}(F)} = v_{2}|_{\mbox{L}(F)}$
+($v_{1}$ et $v_{2}$ coïncident sur les variables libres de $F$),\\
+alors $\hat{v_{1}}(F)=\hat{v_{2}}(F)$
+\end{enumerate}
+\end{lemma}
+
+\noindent \textbf{Exemple pour un terme.}  Soit $t=g(x,\, y)$ et deux
+valuations $v_1$ et $v_2$ telles que $v_{1}(x)=v_{2}(x)$ et
+$v_{1}(y)=v_{2}(y)$. \\ Alors $v_{1}^{*}(t)=g_{\mathcal{D}}(v_{1}(x),\,
+v_{1}(y))=g_{\mathcal{D}}(v_{2}(x),\, v_{2}(y))=v_{2}^{*}(t)$.
+
+\medskip \noindent \textbf{Remarque.}  Ce lemme exprime que la valeur
+de vérité d'une formule ne dépend que des valeurs de ses variables
+libres. Par exemple, la valeur de la formule $F\colon\forall x R(y,\,
+x)$ ne dépend que de $y$.
+
+
+\begin{corollary}[Conséquences]
+Si $F$ est une formule close (c'est-à-dire une formule sans variable libre), 
+alors $\hat{v}(F)$ est constante, indépendante de $v$.
+
+Ainsi, $F$ et $\forall xF$ sont équivalentes si $x$ n'est pas libre
+dans $F$.
+
+De même, $F\sim\exists xF$ si $x\notin\mbox{L}(F)$.\end{corollary}
+
+\noindent \textbf{Exemple.}
+Soit $F\colon\forall x\exists y R(x,\, y)$ interprétée avec pour
+$\mathcal{D}$ l'ensemble des personnes et $R$ la relation définie par 
+$R(x,y)$ si « $y$ est la mère de $x$ ».
+Alors, pour toute valuation $v$, $\hat{v}(F)=1$.
+
+
+\medskip \noindent \textbf{Rappel :} D'après la définition inductive de
+$L(F)$, on a :\\
+$L(\forall xF)=L(F)\backslash\{ x\} =L(F)$ si $x$ n'est pas libre dans $F$.
+
+\noindent Démontrons la propriété : si
+$x\notin L(F)$ alors $F\sim \forall x F$.\\
+
+\noindent On se rappelle tout d'abord que, d'après la définition
+inductive de $L(F)$, on a : $L(\forall xF)=L(F)\backslash\{ x\} =L(F)$
+si $x$ n'est pas libre dans $F$.
+
+\noindent Soit maintenant $v$ une valuation. On a par définition de
+$\hat{v}(\forall xF)$ :\\
+$\hat{v}(\forall xF)=1$ si pour tout 
+$a\in\mathcal{D},\,\widehat{v[x\to a]}(F)=1$.\\
+Mais $v$ et $v[x\to a]$ coïncident partout sauf sur $x$,
+donc elles coïncident sur $L(F)=L(\forall x F)$ d'après ce qui précède.\\
+Donc d'après le lemme : $\hat{v}(F)=\widehat{v[x\to a]}(F)=1$, et 
+on obtient bien $\hat{v}(F)=\hat{v}(\forall xF)$.
+\iffalse
+
+La formule $\forall x F$ est appelée \emph{clôture universelle} de
+$F$.
+\begin{proposition}
+Si $\mathcal{F}\models G$ dans $\mathcal{M}$ 
+alors $\mathcal{F}\models\forall xG$
+dans $\mathcal{M}$ si $x$ n'est libre dans aucune formule de $\mathcal{F}$
+\end{proposition}
+\vspace{-3mm}
+
+\begin{proposition}[Substitution]
+Soit $F$ une formule, $t$ un terme et $x$ une variable.\\
+On veut remplacer toutes les occurrences libres de $x$ par $t$
+dans $F\longrightarrow F[x\mapsto t]$ est la formule obtenue.
+\begin{enumerate}
+\item Cette opération est possible si aucune variable de $t$ ne se trouve
+liée dans $F(x\mapsto t)$.
+\item On a alors pour toute structure $\mathcal{M}$ et toute valuation
+$v$, $\hat{v}(F[x\mapsto t])=\widehat{v[x\mapsto v^{*}(t)]}(F)$
+\end{enumerate}
+\end{proposition}
+
+\textbf{Exemple.}
+Soit $F\colon\exists y(g(y,\, y)=x)$ interprétée
+dans $\N$ avec $g\to$ addition\\
+$F$ dit que $x$ est pair.\\
+On change la signification de la formule si on remplace $x$ par
+$y$ : $\exists y(y+y=y)\longrightarrow y=0$ marche dans
+$\N$.
+
+
+\subsection{Déduction}
+\begin{definition}
+Un séquent $(\mathcal{F},\, G)$ est dit prouvable s'il
+est obtenu par application des règles a), b), c), d), e) et f) du
+calcul propositionnel auxquelles on ajoute :
+
+\vspace{-3mm}
+
+
+\begin{enumerate}
+
+\item Instantiation : si $\mathcal{F}\vdash\forall xF$, alors $\mathcal{F}\vdash F[x\mapsto t]$
+(pour une substitution autorisée)
+
+\item Clôture universelle : si $\mathcal{F}\vdash F$ et si $x$
+n'est pas libre dans $\mathcal{F}$, alors $\mathcal{F}\vdash\forall xF$
+
+\item $\mathcal{F}\vdash\exists xF$ ssi $\mathcal{F}\vdash\neg\forall x\neg F$
+
+\end{enumerate}\end{definition}
+\begin{theorem}
+Un séquent est valide (universellement) ssi il est prouvable.\end{theorem}
+\textbf{Exemple.}
+On a : 
+\begin{enumerate}
+\item Prouver d'abord : $\mathcal{F},\, F\vdash G$ ssi $\mathcal{F},\, F\vdash\neg F$
+\item Prouver ensuite : Si $\mathcal{F},\, F\vdash G$ et si $x$ n'est
+pas libre dans $\mathcal{F}$ et $G$, alors $\mathcal{F},\,\exists xF\vdash G$
+\item Prouver alors que : $\exists x\forall yF\vdash\forall y\exists xF$
+\end{enumerate}
+\fi
+
+
+
+
+
